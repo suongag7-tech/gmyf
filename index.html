@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Give Me Your Forever 🖤</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:#1b1410;
+  font-family:"Times New Roman",serif;
+  color:#f2e8cf;
+  overflow:hidden;
+}
+
+.player{
+  width:320px;
+  padding:20px;
+  background:linear-gradient(135deg,#4b2e1f,#2a1810);
+  border-radius:14px;
+  box-shadow:0 20px 50px rgba(0,0,0,.6);
+  text-align:center;
+  cursor:pointer;
+}
+
+/* Đĩa than */
+.vinyl-wrap{
+  position:relative;
+  width:220px;
+  height:220px;
+  margin:0 auto;
+}
+
+.vinyl{
+  width:100%;
+  height:100%;
+  border-radius:50%;
+  background:
+    radial-gradient(circle at center,#222 0%,#111 40%,#000 70%);
+  box-shadow:inset 0 0 15px rgba(255,255,255,.1);
+}
+
+.vinyl::after{
+  content:"";
+  position:absolute;
+  inset:70px;
+  border-radius:50%;
+  background:#8d6e63;
+}
+
+.spin{
+  animation:spin 4s linear infinite;
+}
+
+@keyframes spin{
+  from{transform:rotate(0deg)}
+  to{transform:rotate(360deg)}
+}
+
+/* Kim đĩa */
+.arm{
+  position:absolute;
+  width:140px;
+  height:6px;
+  background:#c7b299;
+  top:20px;
+  right:-20px;
+  transform-origin:10px 3px;
+  transform:rotate(-30deg);
+  border-radius:3px;
+  transition:transform 1s ease;
+}
+
+.arm::after{
+  content:"";
+  position:absolute;
+  right:-6px;
+  top:-4px;
+  width:14px;
+  height:14px;
+  background:#e6d3b1;
+  border-radius:50%;
+}
+
+.play .arm{
+  transform:rotate(5deg);
+}
+
+/* Lời nhắn */
+.note{
+  margin-top:18px;
+  font-size:15px;
+  line-height:1.6;
+  opacity:0;
+  transition:opacity 1.5s;
+  color:#e6d3b1;
+}
+
+.play .note{
+  opacity:1;
+}
+
+.hint{
+  margin-top:10px;
+  font-size:13px;
+  opacity:.6;
+}
+</style>
+</head>
+
+<body>
+
+<div class="player" onclick="playMusic()" id="player">
+  <div class="vinyl-wrap">
+    <div class="vinyl" id="vinyl"></div>
+    <div class="arm"></div>
+  </div>
+
+  <div class="note">
+    Chị không cần nói gì hết,<br>
+    Khi nào chị sẵn sàng nói em vẫn ở đây<br>
+    Cũng không cần cảm ơn em<br>
+    em chỉ muốn chị nghe bài này 🖤
+  </div>
+
+  <div class="hint">chạm để phát đĩa</div>
+</div>
+
+<audio id="music" src="music.mp3"></audio>
+
+<script>
+let played=false;
+
+function playMusic(){
+  if(played) return;
+  played=true;
+
+  document.getElementById("vinyl").classList.add("spin");
+  document.getElementById("player").classList.add("play");
+  document.getElementById("music").play();
+}
+</script>
+
+</body>
+</html>
